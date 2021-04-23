@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app_user/Database.dart';
 import 'package:news_app_user/Screens/PageControllerScreen.dart';
 import 'package:news_app_user/Screens/RequestDataPage.dart';
 
@@ -7,7 +8,8 @@ import 'package:pinput/pin_put/pin_put.dart';
 
 class OTPScreen extends StatefulWidget {
   final String phone;
-  OTPScreen(this.phone);
+  final String name;
+  OTPScreen(this.phone, this.name);
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -72,11 +74,12 @@ class _OTPScreenState extends State<OTPScreen> {
                           verificationId: _verificationCode, smsCode: pin))
                       .then((value) async {
                     if (value.user != null) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RequestDataPage()),
-                      );
+                      String uid = FirebaseDb().getuid();
+                      await FirebaseDb().adduser(uid, widget.name);
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => PageControllerScreen()),
+                          (Route<dynamic> route) => false);
                     }
                   });
                 } catch (e) {
@@ -101,13 +104,15 @@ class _OTPScreenState extends State<OTPScreen> {
               .signInWithCredential(credential)
               .then((value) async {
             if (value.user != null) {
+              String uid = FirebaseDb().getuid();
+              await FirebaseDb().adduser(uid, widget.name);
               FocusScope.of(context).unfocus();
               _scaffoldkey.currentState!
                   .showSnackBar(SnackBar(content: Text('Login Successful')));
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RequestDataPage()),
-              );
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => PageControllerScreen()),
+                  (Route<dynamic> route) => false);
             }
           });
         },

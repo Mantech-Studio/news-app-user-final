@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app_user/Database.dart';
 import 'package:news_app_user/HomePage.dart';
+import 'package:news_app_user/OpeningScreenUi.dart';
 import 'package:news_app_user/Screens/BookmarkPage.dart';
 import 'package:news_app_user/Screens/BuisnessPage.dart';
 import 'package:news_app_user/Screens/ChuruPage.dart';
@@ -190,7 +191,7 @@ class _PageControllerScreenState extends State<PageControllerScreen> {
                                 await FirebaseDb().signout();
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (context) => PhoneAuth()),
+                                        builder: (context) => OpeningScreen()),
                                     (Route<dynamic> route) => false);
                               },
                               splashColor: Theme.of(context).accentColor,

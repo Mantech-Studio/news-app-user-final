@@ -8,6 +8,7 @@ import 'package:news_app_user/Screens/PageControllerScreen.dart';
 import 'package:news_app_user/Screens/PhoneAuth.dart';
 import 'package:news_app_user/Theme.dart';
 import 'package:provider/provider.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,7 +17,7 @@ void main() async {
     runApp(MaterialApp(
       theme: ThemeNotifier().darkTheme ? dark : light,
       debugShowCheckedModeBanner: false,
-      home: PhoneAuth(),
+      home: OpeningScreen(),
     ));
   } else {
     runApp(MaterialApp(

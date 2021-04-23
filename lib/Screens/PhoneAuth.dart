@@ -36,7 +36,10 @@ class _State extends State<PhoneAuth> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Phone Number',
-                  suffixIcon: Icon(Icons.phone,color: Theme.of(context).accentColor,),
+                  suffixIcon: Icon(
+                    Icons.phone,
+                    color: Theme.of(context).accentColor,
+                  ),
                   prefix: Padding(
                     padding: EdgeInsets.all(4),
                     child: Text('+91'),
@@ -50,18 +53,18 @@ class _State extends State<PhoneAuth> {
           ]),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => OTPScreen(_controller.text)));
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (context) => OTPScreen(_controller.text)));
             },
             child: Container(
-            margin: EdgeInsets.all(10),
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 20),
-            decoration: BoxDecoration(
-              color: Theme.of(context).accentColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Container(
+              margin: EdgeInsets.all(10),
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 20),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Container(
                 child: Center(
                   child: Text(
                     'Next',
